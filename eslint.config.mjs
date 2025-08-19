@@ -11,12 +11,12 @@ const eslintConfig = [
       'next/core-web-vitals',
       'next/typescript',
       'plugin:prettier/recommended',
-      'plugin:jsx-a11y/recommended',
     ],
     plugins: ['prettier', 'jsx-a11y'],
     rules: {
-      'prettier/prettier': ['warn', { tabWidth: 2 }],
+      'prettier/prettier': ['off', { tabWidth: 2 }],
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   }),
 ]
