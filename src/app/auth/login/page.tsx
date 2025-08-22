@@ -1,4 +1,4 @@
-import { LoginForm } from '@/features/auth/login/ui/LoginForm'
+import { LoginForm } from '@/features/auth/ui/LoginForm'
 
 export default function LoginPage() {
   return (
@@ -11,7 +11,7 @@ export default function LoginPage() {
           Acme Inc.
         </a>
 
-        <LoginForm className="w-full" />
+        <LoginForm />
       </div>
     </div>
   )

@@ -2,6 +2,9 @@
 
 export type RegisterDto = {
   email: string
+  /**
+   * Password must be at least 8 characters long
+   */
   password: string
   firstName: string
   lastName: string
@@ -9,6 +12,7 @@ export type RegisterDto = {
 }
 
 export type UserResponse = {
+  id: number
   email: string
   firstName: string
   lastName: string
@@ -17,6 +21,9 @@ export type UserResponse = {
 
 export type LoginDto = {
   email: string
+  /**
+   * Password must be at least 8 characters long
+   */
   password: string
 }
 
@@ -55,6 +62,31 @@ export type AuthControllerLoginResponses = {
 
 export type AuthControllerLoginResponse =
   AuthControllerLoginResponses[keyof AuthControllerLoginResponses]
+
+export type AuthControllerOauthLoginData = {
+  body?: never
+  path?: never
+  query?: never
+  url: '/auth/oauth'
+}
+
+export type AuthControllerOauthLoginResponses = {
+  200: unknown
+}
+
+export type AuthControllerOauthCallbackData = {
+  body?: never
+  path?: never
+  query?: never
+  url: '/auth/google/redirect'
+}
+
+export type AuthControllerOauthCallbackResponses = {
+  200: UserResponse
+}
+
+export type AuthControllerOauthCallbackResponse =
+  AuthControllerOauthCallbackResponses[keyof AuthControllerOauthCallbackResponses]
 
 export type UsersControllerFindAllData = {
   body?: never

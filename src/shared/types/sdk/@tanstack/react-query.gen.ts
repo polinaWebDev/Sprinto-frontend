@@ -4,6 +4,8 @@ import {
   type Options,
   authControllerRegister,
   authControllerLogin,
+  authControllerOauthLogin,
+  authControllerOauthCallback,
   usersControllerFindAll,
   usersControllerCreate,
   usersControllerRemove,
@@ -20,6 +22,8 @@ import type {
   AuthControllerRegisterResponse,
   AuthControllerLoginData,
   AuthControllerLoginResponse,
+  AuthControllerOauthLoginData,
+  AuthControllerOauthCallbackData,
   UsersControllerFindAllData,
   UsersControllerCreateData,
   UsersControllerRemoveData,
@@ -157,6 +161,48 @@ export const authControllerLoginMutation = (
     },
   }
   return mutationOptions
+}
+
+export const authControllerOauthLoginQueryKey = (
+  options?: Options<AuthControllerOauthLoginData>,
+) => createQueryKey('authControllerOauthLogin', options)
+
+export const authControllerOauthLoginOptions = (
+  options?: Options<AuthControllerOauthLoginData>,
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await authControllerOauthLogin({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: authControllerOauthLoginQueryKey(options),
+  })
+}
+
+export const authControllerOauthCallbackQueryKey = (
+  options?: Options<AuthControllerOauthCallbackData>,
+) => createQueryKey('authControllerOauthCallback', options)
+
+export const authControllerOauthCallbackOptions = (
+  options?: Options<AuthControllerOauthCallbackData>,
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await authControllerOauthCallback({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: authControllerOauthCallbackQueryKey(options),
+  })
 }
 
 export const usersControllerFindAllQueryKey = (

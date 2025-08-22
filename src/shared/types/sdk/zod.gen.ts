@@ -4,13 +4,14 @@ import { z } from 'zod'
 
 export const zRegisterDto = z.object({
   email: z.email(),
-  password: z.string(),
+  password: z.string().min(8),
   firstName: z.string().min(2),
   lastName: z.string().min(2),
   phoneNumber: z.string(),
 })
 
 export const zUserResponse = z.object({
+  id: z.number(),
   email: z.string(),
   firstName: z.string(),
   lastName: z.string(),
@@ -19,7 +20,7 @@ export const zUserResponse = z.object({
 
 export const zLoginDto = z.object({
   email: z.email(),
-  password: z.string(),
+  password: z.string().min(8),
 })
 
 export const zUserRequestDto = z.object({
@@ -45,6 +46,20 @@ export const zAuthControllerLoginData = z.object({
 })
 
 export const zAuthControllerLoginResponse = zUserResponse
+
+export const zAuthControllerOauthLoginData = z.object({
+  body: z.optional(z.never()),
+  path: z.optional(z.never()),
+  query: z.optional(z.never()),
+})
+
+export const zAuthControllerOauthCallbackData = z.object({
+  body: z.optional(z.never()),
+  path: z.optional(z.never()),
+  query: z.optional(z.never()),
+})
+
+export const zAuthControllerOauthCallbackResponse = zUserResponse
 
 export const zUsersControllerFindAllData = z.object({
   body: z.optional(z.never()),

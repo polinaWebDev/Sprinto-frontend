@@ -6,6 +6,10 @@ import type {
   AuthControllerRegisterResponses,
   AuthControllerLoginData,
   AuthControllerLoginResponses,
+  AuthControllerOauthLoginData,
+  AuthControllerOauthLoginResponses,
+  AuthControllerOauthCallbackData,
+  AuthControllerOauthCallbackResponses,
   UsersControllerFindAllData,
   UsersControllerFindAllResponses,
   UsersControllerCreateData,
@@ -67,6 +71,34 @@ export const authControllerLogin = <ThrowOnError extends boolean = false>(
       'Content-Type': 'application/json',
       ...options.headers,
     },
+  })
+}
+
+export const authControllerOauthLogin = <ThrowOnError extends boolean = false>(
+  options?: Options<AuthControllerOauthLoginData, ThrowOnError>,
+) => {
+  return (options?.client ?? _heyApiClient).get<
+    AuthControllerOauthLoginResponses,
+    unknown,
+    ThrowOnError
+  >({
+    url: '/auth/oauth',
+    ...options,
+  })
+}
+
+export const authControllerOauthCallback = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<AuthControllerOauthCallbackData, ThrowOnError>,
+) => {
+  return (options?.client ?? _heyApiClient).get<
+    AuthControllerOauthCallbackResponses,
+    unknown,
+    ThrowOnError
+  >({
+    url: '/auth/google/redirect',
+    ...options,
   })
 }
 

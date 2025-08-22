@@ -1,4 +1,4 @@
-import { RegisterForm } from '@/features/auth/register/ui/RegisterForm'
+import { RegisterForm } from '@/features/auth/ui/RegisterForm'
 
 export default function LoginPage() {
   return (
@@ -11,7 +11,7 @@ export default function LoginPage() {
           Acme Inc.
         </a>
 
-        <RegisterForm className="w-full" />
+        <RegisterForm />
       </div>
     </div>
   )
