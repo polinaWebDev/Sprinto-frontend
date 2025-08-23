@@ -88,6 +88,23 @@ export type AuthControllerOauthCallbackResponses = {
 export type AuthControllerOauthCallbackResponse =
   AuthControllerOauthCallbackResponses[keyof AuthControllerOauthCallbackResponses]
 
+export type AuthControllerGetMeData = {
+  body?: never
+  path?: never
+  query?: never
+  url: '/auth/me'
+}
+
+export type AuthControllerGetMeResponses = {
+  /**
+   * Successful get user
+   */
+  200: UserResponse
+}
+
+export type AuthControllerGetMeResponse =
+  AuthControllerGetMeResponses[keyof AuthControllerGetMeResponses]
+
 export type UsersControllerFindAllData = {
   body?: never
   path?: never

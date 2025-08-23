@@ -10,6 +10,8 @@ import type {
   AuthControllerOauthLoginResponses,
   AuthControllerOauthCallbackData,
   AuthControllerOauthCallbackResponses,
+  AuthControllerGetMeData,
+  AuthControllerGetMeResponses,
   UsersControllerFindAllData,
   UsersControllerFindAllResponses,
   UsersControllerCreateData,
@@ -98,6 +100,26 @@ export const authControllerOauthCallback = <
     ThrowOnError
   >({
     url: '/auth/google/redirect',
+    ...options,
+  })
+}
+
+export const authControllerGetMe = <ThrowOnError extends boolean = false>(
+  options?: Options<AuthControllerGetMeData, ThrowOnError>,
+) => {
+  return (options?.client ?? _heyApiClient).get<
+    AuthControllerGetMeResponses,
+    unknown,
+    ThrowOnError
+  >({
+    security: [
+      {
+        in: 'cookie',
+        name: 'refreshToken',
+        type: 'apiKey',
+      },
+    ],
+    url: '/auth/me',
     ...options,
   })
 }

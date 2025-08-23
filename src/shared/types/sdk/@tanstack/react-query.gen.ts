@@ -6,6 +6,7 @@ import {
   authControllerLogin,
   authControllerOauthLogin,
   authControllerOauthCallback,
+  authControllerGetMe,
   usersControllerFindAll,
   usersControllerCreate,
   usersControllerRemove,
@@ -24,6 +25,7 @@ import type {
   AuthControllerLoginResponse,
   AuthControllerOauthLoginData,
   AuthControllerOauthCallbackData,
+  AuthControllerGetMeData,
   UsersControllerFindAllData,
   UsersControllerCreateData,
   UsersControllerRemoveData,
@@ -202,6 +204,27 @@ export const authControllerOauthCallbackOptions = (
       return data
     },
     queryKey: authControllerOauthCallbackQueryKey(options),
+  })
+}
+
+export const authControllerGetMeQueryKey = (
+  options?: Options<AuthControllerGetMeData>,
+) => createQueryKey('authControllerGetMe', options)
+
+export const authControllerGetMeOptions = (
+  options?: Options<AuthControllerGetMeData>,
+) => {
+  return queryOptions({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await authControllerGetMe({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      })
+      return data
+    },
+    queryKey: authControllerGetMeQueryKey(options),
   })
 }
 

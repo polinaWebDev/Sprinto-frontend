@@ -61,6 +61,17 @@ export const zAuthControllerOauthCallbackData = z.object({
 
 export const zAuthControllerOauthCallbackResponse = zUserResponse
 
+export const zAuthControllerGetMeData = z.object({
+  body: z.optional(z.never()),
+  path: z.optional(z.never()),
+  query: z.optional(z.never()),
+})
+
+/**
+ * Successful get user
+ */
+export const zAuthControllerGetMeResponse = zUserResponse
+
 export const zUsersControllerFindAllData = z.object({
   body: z.optional(z.never()),
   path: z.optional(z.never()),
