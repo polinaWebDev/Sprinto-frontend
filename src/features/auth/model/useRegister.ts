@@ -1,26 +1,27 @@
-import { useMutation } from '@tanstack/react-query'
 import { transformUserResponse } from '@/entities/user/model/transformers'
-import { toast } from 'sonner'
+import { User } from '@/features/auth/model/types'
+import { useMutation } from '@tanstack/react-query'
 import { authControllerRegisterMutation } from '@/features/auth/api/auth.api'
-import { useRouter } from 'next/navigation'
 
-export const useRegisterModel = () => {
-  const router = useRouter()
+export interface UseRegisterModelOptions {
+  onSuccess?: (result: { user: User }) => void
+  onError?: (error: Error) => void
+}
 
+export const useRegisterModel = (options?: UseRegisterModelOptions) => {
   const registerMutation = useMutation({
     ...authControllerRegisterMutation(),
     onSuccess: (data) => {
-      const user = transformUserResponse(data)
-      router.push('/dashboard')
-      toast.success(`Welcome, ${user.fullName}`)
+      const user: User = transformUserResponse(data)
+      options?.onSuccess?.({ user })
     },
     onError: (error) => {
-      toast.error(`Register failed: ${error.message}`)
+      options?.onError?.(error)
     },
   })
 
   return {
-    login: registerMutation.mutate,
+    register: registerMutation.mutate,
     isLoading: registerMutation.isPending,
     error: registerMutation.error,
   }

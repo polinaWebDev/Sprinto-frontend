@@ -1,14 +1,14 @@
 'use client'
-import { useLoginModel } from '@/features/auth/model/useLogin'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   LoginFormValues,
   zAuthControllerLoginData,
 } from '@/features/auth/model/validators'
+import { useLoginController } from '@/features/auth/model/useLoginController'
 
 export const useLoginForm = () => {
-  const { login, isLoading } = useLoginModel()
+  const { login, isLoading } = useLoginController()
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(zAuthControllerLoginData.shape.body),

@@ -9,13 +9,13 @@ import {
   FormMessage,
 } from '../atoms/form'
 import { Label } from '@/shared/ui/atoms/label'
-import { Card } from './card'
 import {
+  Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/ui/atoms/card'
+} from './card'
 
 interface AuthFormProps {
   title: string
@@ -85,8 +85,8 @@ export function AuthForm({
 
             {showOAuth && (
               <div className="mt-4 flex flex-col gap-2">
-                <Button variant="outline" onClick={handleGoogleLogin}>
-                  Войти через Google
+                <Button disabled={isLoading}>
+                  {isLoading ? 'Загрузка...' : 'Войти через Google'}
                 </Button>
               </div>
             )}

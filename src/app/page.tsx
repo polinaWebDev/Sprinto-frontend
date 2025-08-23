@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/features/auth/model/auth.service'
+import { getCurrentUser } from '@/features/auth/model/getCurrentUser'
 
 export default async function Home() {
   const user = await getCurrentUser()
