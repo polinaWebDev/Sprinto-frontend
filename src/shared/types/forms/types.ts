@@ -12,14 +12,6 @@ export const registerFields: FieldConfig[] = [
   { name: 'lastName', label: 'Фамилия', type: 'text', required: true },
   { name: 'email', label: 'Email', type: 'email', required: true },
   { name: 'password', label: 'Пароль', type: 'password', required: true },
-  {
-    name: 'phoneNumber',
-    label: 'Телефон',
-    type: 'tel',
-    placeholder: '+7 (999) 999-99-99',
-    required: true,
-    defaultValue: '+7 ',
-  },
 ]
 
 export const loginFields: FieldConfig[] = [

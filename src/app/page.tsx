@@ -1,7 +1,7 @@
-import { getCurrentUser } from '@/features/auth/model/auth.service'
+import { getUserServer } from '@/entities/user/api/getUserServer'
 
 export default async function Home() {
-  const user = await getCurrentUser()
+  const user = await getUserServer()
   if (!user) {
     return (
       <>
@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <>
-      <h1>Hello, {user.fullName}</h1>
+      <h1>Hello, {user.email}</h1>
     </>
   )
 }

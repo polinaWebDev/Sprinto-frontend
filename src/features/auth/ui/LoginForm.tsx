@@ -1,6 +1,6 @@
 'use client'
 import { useLoginForm } from '@/features/auth/ui/hooks/useLoginForm'
-import { AuthForm } from '@/shared/ui/molecules/AuthForms'
+import { AuthForm } from '@/shared/ui/organism/AuthForms'
 import { loginFields } from '@/shared/types/forms/types'
 
 export function LoginForm() {

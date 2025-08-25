@@ -1,19 +1,22 @@
 import { useMutation } from '@tanstack/react-query'
 import { authControllerLoginMutation } from '@/features/auth/api/auth.api'
 import { transformUserResponse } from '@/entities/user/model/transformers'
-import { toast } from 'sonner'
-import { router } from 'next/client'
+import { User } from '@/entities/user/model/types'
 
-export const useLoginModel = () => {
+export interface UseLoginModelOptions {
+  onSuccess?: (result: { user: User }) => void
+  onError?: (error: Error) => void
+}
+
+export const useLoginModel = (options?: UseLoginModelOptions) => {
   const loginMutation = useMutation({
     ...authControllerLoginMutation(),
     onSuccess: (data) => {
-      const user = transformUserResponse(data)
-      router.push('/dashboard')
-      toast.success(`Welcome back, ${user.fullName}`)
+      const user: User = transformUserResponse(data)
+      options?.onSuccess?.({ user })
     },
     onError: (error) => {
-      toast.error(`Login failed: ${error.message}`)
+      options?.onError?.(error)
     },
   })
 

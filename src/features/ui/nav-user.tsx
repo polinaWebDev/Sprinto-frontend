@@ -25,12 +25,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/shared/ui/molecules/sidebar'
-import { useCurrentUser } from '@/features/auth/model/useCurrentUser'
+import { useUserClient } from '@/entities/user/api/getUserClient'
 import { transformUserResponse } from '@/entities/user/model/transformers'
 
 export function NavUser() {
   const { isMobile } = useSidebar()
-  const { user, isLoading, error } = useCurrentUser()
+  const { user, isLoading, error } = useUserClient()
 
   if (!user) {
     return null

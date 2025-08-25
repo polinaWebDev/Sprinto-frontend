@@ -1,5 +1,5 @@
 'use client'
-import { AuthForm } from '@/shared/ui/molecules/AuthForms'
+import { AuthForm } from '@/shared/ui/organism/AuthForms'
 import { registerFields } from '@/shared/types/forms/types'
 import { useRegisterForm } from '@/features/auth/ui/hooks/useRegisterForm'
 

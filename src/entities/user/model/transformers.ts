@@ -1,4 +1,5 @@
-import { User, UserResponse } from '../../../features/auth/model/types'
+import { UserResponse } from '@/shared/types/sdk'
+import { User } from '@/entities/user/model/types'
 
 export const transformUserResponse = (response: UserResponse): User => ({
   ...response,

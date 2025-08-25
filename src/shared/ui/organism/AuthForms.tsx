@@ -9,13 +9,14 @@ import {
   FormMessage,
 } from '../atoms/form'
 import { Label } from '@/shared/ui/atoms/label'
-import { Card } from './card'
 import {
+  Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/ui/atoms/card'
+} from '../molecules/card'
+import { OAUTH_PROVIDERS } from '@/features/auth/config/constants'
 
 interface AuthFormProps {
   title: string
@@ -38,11 +39,7 @@ export function AuthForm({
 }: AuthFormProps) {
   const handleGoogleLogin = async () => {
     try {
-      // Ваш API вызов
-      window.location.href = 'http://localhost:3000/auth/oauth'
-
-      // Автоматический редирект произойдет через заголовки или CORS
-      // Если нет, можно добавить window.location.reload() после успеха
+      window.location.href = OAUTH_PROVIDERS.path
     } catch (error) {
       console.error('Google auth error:', error)
     }
@@ -85,8 +82,8 @@ export function AuthForm({
 
             {showOAuth && (
               <div className="mt-4 flex flex-col gap-2">
-                <Button variant="outline" onClick={handleGoogleLogin}>
-                  Войти через Google
+                <Button disabled={isLoading} onClick={handleGoogleLogin}>
+                  {isLoading ? 'Загрузка...' : 'Войти через Google'}
                 </Button>
               </div>
             )}

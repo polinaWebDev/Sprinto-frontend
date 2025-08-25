@@ -8,7 +8,6 @@ export type RegisterDto = {
   password: string
   firstName: string
   lastName: string
-  phoneNumber: string
 }
 
 export type UserResponse = {
@@ -16,7 +15,6 @@ export type UserResponse = {
   email: string
   firstName: string
   lastName: string
-  phoneNumber: string
 }
 
 export type LoginDto = {
@@ -31,7 +29,6 @@ export type UserRequestDto = {
   email: string
   firstName: string
   lastName: string
-  phoneNumber: string
   password: string
 }
 

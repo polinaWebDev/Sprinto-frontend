@@ -7,7 +7,6 @@ export const zRegisterDto = z.object({
   password: z.string().min(8),
   firstName: z.string().min(2),
   lastName: z.string().min(2),
-  phoneNumber: z.string(),
 })
 
 export const zUserResponse = z.object({
@@ -15,7 +14,6 @@ export const zUserResponse = z.object({
   email: z.string(),
   firstName: z.string(),
   lastName: z.string(),
-  phoneNumber: z.string(),
 })
 
 export const zLoginDto = z.object({
@@ -27,7 +25,6 @@ export const zUserRequestDto = z.object({
   email: z.string().regex(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/),
   firstName: z.string(),
   lastName: z.string(),
-  phoneNumber: z.string(),
   password: z.string(),
 })
 
